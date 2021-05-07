@@ -1,0 +1,47 @@
+query getMovie($Id: ID!) {
+    movie(id: $Id) {
+        backdrop {
+            original, large
+        }
+        adult
+        name
+        tagline
+        overview
+        status
+        keywords {
+            id, name
+        }
+        budget
+        cast(limit: 5) {
+            id
+            person {
+                id, name, gender, birthday, biography
+            }
+            role {
+                ... on Cast {
+                    character
+                }
+                ... on Crew {
+                    job
+                    department
+                }
+            }
+        }
+        country {
+            code
+        }
+        genres {
+            id
+            name
+        }
+        images {
+            ... on Poster {
+                huge
+            }
+            ... on Image {
+                original
+                custom(size: "192")
+            }
+        }
+    }
+}

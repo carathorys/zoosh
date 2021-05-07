@@ -1,0 +1,12 @@
+overwrite: true
+schema: "https://tmdb.sandbox.zoosh.ie/dev"
+documents: "src/**/*.graphql"
+generates:
+  src/generated/graphql.tsx:
+    plugins:
+      - "typescript"
+      - "typescript-operations"
+      - "typescript-react-apollo"
+  ./graphql.schema.json:
+    plugins:
+      - "introspection"

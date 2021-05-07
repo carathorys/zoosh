@@ -1,0 +1,14 @@
+query SearchMovies($query: String!) {
+    searchMovies(query: $query) {
+        id
+        name
+        adult
+        overview
+        status
+        popularity
+        releaseDate
+        poster {
+            thumbnail
+        }
+    }
+}
