@@ -1,5 +1,5 @@
 export interface SearchProps {
-  hasFocus: boolean;
+  hasFocus?: boolean;
   isLoading: boolean;
   doSearch: (term: string) => void;
 }

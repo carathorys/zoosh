@@ -1271,19 +1271,19 @@ export type GetMovieQuery = (
   ) }
 );
 
-export type SearchMoviesQueryVariables = Exact<{
+export type SearchQueryVariables = Exact<{
   query: Scalars['String'];
 }>;
 
 
-export type SearchMoviesQuery = (
+export type SearchQuery = (
   { __typename?: 'Query' }
   & { searchMovies: Array<(
     { __typename?: 'Movie' }
     & Pick<Movie, 'id' | 'name' | 'adult' | 'overview' | 'status' | 'popularity' | 'releaseDate'>
     & { poster?: Maybe<(
       { __typename?: 'Poster' }
-      & Pick<Poster, 'thumbnail'>
+      & Pick<Poster, 'tiny'>
     )> }
   )> }
 );
@@ -1372,8 +1372,8 @@ export function useGetMovieLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<G
 export type GetMovieQueryHookResult = ReturnType<typeof useGetMovieQuery>;
 export type GetMovieLazyQueryHookResult = ReturnType<typeof useGetMovieLazyQuery>;
 export type GetMovieQueryResult = Apollo.QueryResult<GetMovieQuery, GetMovieQueryVariables>;
-export const SearchMoviesDocument = gql`
-    query SearchMovies($query: String!) {
+export const SearchDocument = gql`
+    query search($query: String!) {
   searchMovies(query: $query) {
     id
     name
@@ -1383,36 +1383,36 @@ export const SearchMoviesDocument = gql`
     popularity
     releaseDate
     poster {
-      thumbnail
+      tiny
     }
   }
 }
     `;
 
 /**
- * __useSearchMoviesQuery__
+ * __useSearchQuery__
  *
- * To run a query within a React component, call `useSearchMoviesQuery` and pass it any options that fit your needs.
- * When your component renders, `useSearchMoviesQuery` returns an object from Apollo Client that contains loading, error, and data properties
+ * To run a query within a React component, call `useSearchQuery` and pass it any options that fit your needs.
+ * When your component renders, `useSearchQuery` returns an object from Apollo Client that contains loading, error, and data properties
  * you can use to render your UI.
  *
  * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
  *
  * @example
- * const { data, loading, error } = useSearchMoviesQuery({
+ * const { data, loading, error } = useSearchQuery({
  *   variables: {
  *      query: // value for 'query'
  *   },
  * });
  */
-export function useSearchMoviesQuery(baseOptions: Apollo.QueryHookOptions<SearchMoviesQuery, SearchMoviesQueryVariables>) {
+export function useSearchQuery(baseOptions: Apollo.QueryHookOptions<SearchQuery, SearchQueryVariables>) {
         const options = {...defaultOptions, ...baseOptions}
-        return Apollo.useQuery<SearchMoviesQuery, SearchMoviesQueryVariables>(SearchMoviesDocument, options);
+        return Apollo.useQuery<SearchQuery, SearchQueryVariables>(SearchDocument, options);
       }
-export function useSearchMoviesLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<SearchMoviesQuery, SearchMoviesQueryVariables>) {
+export function useSearchLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<SearchQuery, SearchQueryVariables>) {
           const options = {...defaultOptions, ...baseOptions}
-          return Apollo.useLazyQuery<SearchMoviesQuery, SearchMoviesQueryVariables>(SearchMoviesDocument, options);
+          return Apollo.useLazyQuery<SearchQuery, SearchQueryVariables>(SearchDocument, options);
         }
-export type SearchMoviesQueryHookResult = ReturnType<typeof useSearchMoviesQuery>;
-export type SearchMoviesLazyQueryHookResult = ReturnType<typeof useSearchMoviesLazyQuery>;
-export type SearchMoviesQueryResult = Apollo.QueryResult<SearchMoviesQuery, SearchMoviesQueryVariables>;
+export type SearchQueryHookResult = ReturnType<typeof useSearchQuery>;
+export type SearchLazyQueryHookResult = ReturnType<typeof useSearchLazyQuery>;
+export type SearchQueryResult = Apollo.QueryResult<SearchQuery, SearchQueryVariables>;

@@ -5,11 +5,20 @@ import reportWebVitals from './reportWebVitals';
 import {LayoutComponent} from "./layout";
 import {BrowserRouter as Router} from "react-router-dom";
 
+import {ApolloClient, InMemoryCache, ApolloProvider} from '@apollo/client';
+
+const client = new ApolloClient({
+  uri: 'https://tmdb.sandbox.zoosh.ie/dev',
+  cache: new InMemoryCache()
+});
+
 ReactDOM.render(
   <React.StrictMode>
-    <Router>
-      <LayoutComponent/>
-    </Router>
+    <ApolloProvider client={client}>
+      <Router>
+        <LayoutComponent/>
+      </Router>
+    </ApolloProvider>
   </React.StrictMode>,
   document.getElementById('root')
 );

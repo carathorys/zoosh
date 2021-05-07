@@ -1,6 +1,6 @@
-overwrite: true
 schema: "https://tmdb.sandbox.zoosh.ie/dev"
 documents: "src/**/*.graphql"
+overwrite: true
 generates:
   src/generated/graphql.tsx:
     plugins:

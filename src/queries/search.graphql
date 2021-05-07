@@ -1,4 +1,4 @@
-query SearchMovies($query: String!) {
+query search($query: String!) {
     searchMovies(query: $query) {
         id
         name
@@ -8,7 +8,7 @@ query SearchMovies($query: String!) {
         popularity
         releaseDate
         poster {
-            thumbnail
+            tiny
         }
     }
 }

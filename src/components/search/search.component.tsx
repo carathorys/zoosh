@@ -17,9 +17,21 @@ export const SearchComponent = (props: SearchProps) => {
   const classes = SearchStyles();
 
   const updateFocus = (isFocused: boolean) => () => setFocus(isFocused);
+
   const updateSearchTerm = (event: React.ChangeEvent<HTMLInputElement>) => {
     setSearchTerm(event.target.value);
   };
+
+  const keyPressed = (event: React.KeyboardEvent<HTMLInputElement>) => {
+    if (props.isLoading) {
+      event.preventDefault();
+      event.stopPropagation();
+      return;
+    }
+    if (event.key === "Enter") {
+      props.doSearch(searchTerm);
+    }
+  }
 
   return <Paper elevation={isFocused ? 10 : 3}
                 className={classes.root}
@@ -32,6 +44,7 @@ export const SearchComponent = (props: SearchProps) => {
       value={searchTerm}
       label="Please type something to search"
       onChange={updateSearchTerm}
+      onKeyPress={keyPressed}
       onFocus={updateFocus(true)}
       onBlur={updateFocus(false)}
     />
