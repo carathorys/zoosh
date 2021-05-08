@@ -1281,7 +1281,10 @@ export type SearchQuery = (
   & { searchMovies: Array<(
     { __typename?: 'Movie' }
     & Pick<Movie, 'id' | 'name' | 'adult' | 'overview' | 'status' | 'popularity' | 'releaseDate'>
-    & { poster?: Maybe<(
+    & { backdrop?: Maybe<(
+      { __typename?: 'Backdrop' }
+      & Pick<Backdrop, 'small' | 'medium' | 'large'>
+    )>, poster?: Maybe<(
       { __typename?: 'Poster' }
       & Pick<Poster, 'tiny'>
     )> }
@@ -1382,6 +1385,11 @@ export const SearchDocument = gql`
     status
     popularity
     releaseDate
+    backdrop {
+      small
+      medium
+      large
+    }
     poster {
       tiny
     }

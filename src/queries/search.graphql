@@ -7,6 +7,12 @@ query search($query: String!) {
         status
         popularity
         releaseDate
+        backdrop {
+            small,
+            medium,
+            large,
+            original
+        }
         poster {
             tiny
         }

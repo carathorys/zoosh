@@ -12,7 +12,7 @@ import {SearchStyles} from "./search.styles";
 
 export const SearchComponent = (props: SearchProps) => {
   const [isFocused, setFocus] = useState(false);
-  const [searchTerm, setSearchTerm] = useState("");
+  const [searchTerm, setSearchTerm] = useState<string>(props.defaultTerm ?? "");
 
   const classes = SearchStyles();
 
